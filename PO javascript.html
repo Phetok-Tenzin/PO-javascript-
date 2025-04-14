@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <title>test</title>
+        <meta name="author" content="Phetok en Marc">
+        <meta name="keywords" content="PO Javascript">
+        <meta name="description" content="Dit is onze PO Javascript">
+    </head>
+
+    <body>
+        <link rel="stylesheet" type="text/css" href="PO javascript.css">
+
+        <div id="container">
+            <div id="container-kaart" data-framework="appel"><img id="achterkant" src="appel.png" alt="appel" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="appel"><img id="achterkant" src="appel.png" alt="appel" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="banaan"><img id="achterkant" src="banaan.png" alt="banaan" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="banaan"><img id="achterkant" src="banaan.png" alt="banaan" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="sinaasappel"><img id="achterkant" src="sinaasappel.png" alt="sinaasappel" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="sinaasappel"><img id="achterkant" src="sinaasappel.png" alt="sinaasappel" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="watermeloen"><img id="achterkant" src="watermeloen.png" alt="watermeloen" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="watermeloen"><img id="achterkant" src="watermeloen.png" alt="watermeloen" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="peer"><img id="achterkant" src="peer.png" alt="peer" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="peer"><img id="achterkant" src="peer.png" alt="peer" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="aardbei"><img id="achterkant" src="aardbei.png" alt="aardbei" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="aardbei"><img id="achterkant" src="aardbei.png" alt="aardbei" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="mango"><img id="achterkant" src="mango.png" alt="mango" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="mango"><img id="achterkant" src="mango.png" alt="mango" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="citroen"><img id="achterkant" src="citroen.png" alt="citroen" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="citroen"><img id="achterkant" src="citroen.png" alt="citroen" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="limoen"><img id="achterkant" src="limoen.png" alt="limoen" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="limoen"><img id="achterkant" src="limoen.png" alt="limoen" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="druiven"><img id="achterkant" src="druiven.png" alt="druiven" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="druiven"><img id="achterkant" src="druiven.png" alt="druiven" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="dragonfruit"><img id="achterkant" src="dragonfruit.png" alt="dragonfruit" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="dragonfruit"><img id="achterkant" src="dragonfruit.png" alt="dragonfruit" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="ananas"><img id="achterkant" src="ananas.png" alt="ananas" ><img id="voorkant" src="testridder.png" alt="plaatje" ></div>
+            <div id="container-kaart" data-framework="ananas"><img id="achterkant" src="ananas.png" alt="ananas" ><img id="voorkant" src="testridder.png" data-framework="plaatje" ></div>
+
+        </div>
+
+        <script>
+            const kaarten = document.querySelectorAll('#container-kaart')
+
+            let kaartflipte = false;
+            let lockboard = false;
+            let eerstekaart, tweedekaart;
+
+            function flipkaart() {
+                if (lockboard) return;
+                if (this === eerstekaart) return;
+
+                this.classList.add('flip');
+
+                if (!kaartflipte) {
+                    kaartflipte = true;
+                    eerstekaart = this;
+                } else {
+                    kaartflipte = false; 
+                    tweedekaart = this;
+
+                    checkvoormatch(); 
+                }
+            }
+
+            function checkvoormatch() {
+                if (eerstekaart.dataset.framework === tweedekaart.dataset.framework) {
+                    kaartenannuleren();
+                } else {
+                    kaartenresetten();
+                } 
+            }
+
+            function kaartenannuleren() {
+                eerstekaart.removeEventListener('click', flipkaart);
+                tweedekaart.removeEventListener('click', flipkaart);
+            }
+
+            function kaartenresetten() {
+                lockboard = true; 
+                setTimeout(() => {
+                    eerstekaart.classList.remove('flip');
+                    tweedekaart.classList.remove('flip');
+
+                    lockboard = false;
+                }, 500);
+            }
+
+            function resetcontainer() {
+                kaartflipte = false;
+                lockboard = false;
+                eerstekaart = null;
+                tweedekaart = null;
+            }
+
+            (function shuffle() {
+                kaarten.forEach(kaart => {
+                    let randompositie = Math.floor(Math.random() * 24);
+                    kaart.style.order = randompositie; 
+                });
+            })();
+
+            kaarten.forEach(kaart => kaart.addEventListener('click', flipkaart))
+
+        </script>
+            
+    </body>
+</html>
