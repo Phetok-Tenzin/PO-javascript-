@@ -5,50 +5,71 @@
         <meta name="author" content="Phetok en Marc">
         <meta name="keywords" content="easy level">
         <meta name="description" content="Dit is de easy level gedeelte van onze game. Die we hebben gemaakt voor onze PO Javascript.">
+        
         <style>
 
-        body {
-            background-color: maroon;
-          }
+            body {
+                background-color: maroon;
+                background-image: url("Achtegrondkaarten.png");
+                background-size: cover;
+            }
+
+            p {
+                font-size: 40px;
+                height: 40px;
+                margin: 0;
+            }
           
-          #container {
-            width: 500px;
-            height: 600px;
-            margin-right: auto;
-            margin-left: auto;
-            margin-top: 40px;
-            background-color: black;
-            perspective: 1000px;
-            display: flex;
-            flex-wrap: wrap;
-          }
-          
-          #container-kaart {
-            width: 125px;
-            height: 150px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: scale(1);
-            transition: transform .5s;
-          }
-          
-          #voorkant, #achterkant {
-            position: absolute;
-            width: 115px;
-            height: 140px;
-            margin: 5px;
-            border-radius: 10px;
-            background-color: darkgreen;
-            backface-visibility: hidden;
-          }
-          
-          #achterkant {
-            transform: rotateY(180deg);
-          }
-          
-          #container-kaart.flip {
-            transform: rotateY(180deg);
-          }
+            #container {
+                width: 500px;
+                height: 600px;
+                margin-right: auto;
+                margin-left: auto;
+                margin-top: 50px;
+                background-color: black;
+                perspective: 1000px;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            
+            #container-kaart {
+                width: 125px;
+                height: 150px;
+                position: relative;
+                transform-style: preserve-3d;
+                transition: transform .5s;
+            }
+            
+            #voorkant, #achterkant {
+                position: absolute;
+                width: 115px;
+                height: 140px;
+                margin: 5px;
+                border-radius: 10px;
+                backface-visibility: hidden;
+            }
+            
+            #achterkant {
+                transform: rotateY(180deg);
+            }
+            
+            #container-kaart.flip {
+                transform: rotateY(180deg);
+            }
+
+            #Popup1, #Popup2{
+                width: 200px;
+                height: 200px;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                margin-top: -100px;
+                margin-left: -100px;
+                background-color: maroon;
+                display: none;
+                border-radius: 20px;
+                text-align: center;
+            }
 
         </style>
 
@@ -56,48 +77,53 @@
 
     <body>
 
-        <div id="container">
-            <div id="container-kaart" data-framework="Alexander"><img id="achterkant" src="Alexander.png" alt="Alexander"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Alexander"><img id="achterkant" src="Alexander.png" alt="Alexander"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Baldwin"><img id="achterkant" src="Baldwin.png" alt="Baldwin"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Baldwin"><img id="achterkant" src="Baldwin.png" alt="Baldwin"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Barbarossa"><img id="achterkant" src="Barbarossa.png" alt="Barbarossa"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Barbarossa"><img id="achterkant" src="Barbarossa.png" alt="Barbarossa"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Cleopatra"><img id="achterkant" src="Cleopatra.png" alt="Cleopatra"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Cleopatra"><img id="achterkant" src="Cleopatra.png" alt="Cleopatra"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Leonidas"><img id="achterkant" src="Leonidas.png" alt="Leonidas"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="Leonidas"><img id="achterkant" src="Leonidas.png" alt="Leonidas"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="munten"><img id="achterkant" src="munten.png" alt="munten"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="munten"><img id="achterkant" src="munten.png" alt="munten"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="graan"><img id="achterkant" src="graan.png" alt="graan"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="graan"><img id="achterkant" src="graan.png" alt="graan"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="stapel hout"><img id="achterkant" src="stapel hout.png" alt="stapel hout"><img id="voorkant" src="easy level.png" alt="easy"></div>
-            <div id="container-kaart" data-framework="stapel hout"><img id="achterkant" src="stapel hout.png" alt="stapel hout"><img id="voorkant" src="easy level.png" alt="easy"></div>
+        <p id="countdown">50</p>
 
+        <div id="container">
+            <div id="container-kaart" data-framework="Zwaard"><img id="achterkant" src="Zwaard.png" alt="Zwaard"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="Zwaard"><img id="achterkant" src="Zwaard.png" alt="Zwaard"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="Boog"><img id="achterkant" src="Boog.png" alt="Boog"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="Boog"><img id="achterkant" src="Boog.png" alt="Boog"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="speer"><img id="achterkant" src="speer.png" alt="speer"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="speer"><img id="achterkant" src="speer.png" alt="speer"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="karretje"><img id="achterkant" src="karretje.png" alt="karretje"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="karretje"><img id="achterkant" src="karretje.png" alt="karretje"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="Schild"><img id="achterkant" src="Schild.png" alt="Schild"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="Schild"><img id="achterkant" src="Schild.png" alt="Schild"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="munten"><img id="achterkant" src="munten.png" alt="munten"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="munten"><img id="achterkant" src="munten.png" alt="munten"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="graan"><img id="achterkant" src="graan.png" alt="graan"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="graan"><img id="achterkant" src="graan.png" alt="graan"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="stapel hout"><img id="achterkant" src="stapel hout.png" alt="stapel hout"><img id="voorkant" src="easy level.png" alt="easy"></div>
+            <div id="container-kaart" data-framework="stapel hout"><img id="achterkant" src="stapel hout.png" alt="stapel hout"><img id="voorkant" src="easy level.png" alt="easy"></div>
         </div>
 
-        <style>
-        
-        </style>
+        <div id="Popup1">
+            <h1>YOU LOST</h1>
+        </div>
+        <div id="Popup2">
+            <h1>YOU WON</h1>
+        </div>
 
         <script>
             const kaarten = document.querySelectorAll('#container-kaart')
 
-            let kaartflipte = false;
-            let lockboard = false;
+            let kaartflip = false;
+            let vergrendelcontainer = false;
             let eerstekaart, tweedekaart;
+            let kaartengevonden = 0;
 
             function flipkaart() {
-                if (lockboard) return;
+                if (vergrendelcontainer) return;
                 if (this === eerstekaart) return;
 
                 this.classList.add('flip');
 
-                if (!kaartflipte) {
-                    kaartflipte = true;
+                if (!kaartflip) {
+                    kaartflip = true;
                     eerstekaart = this;
                 } else {
-                    kaartflipte = false; 
+                    kaartflip = false; 
                     tweedekaart = this;
 
                     checkvoormatch(); 
@@ -106,42 +132,79 @@
 
             function checkvoormatch() {
                 if (eerstekaart.dataset.framework === tweedekaart.dataset.framework) {
-                    kaartenannuleren();
+                    gevonden();
                 } else {
                     kaartenresetten();
                 } 
             }
 
-            function kaartenannuleren() {
+            function gevonden() {
                 eerstekaart.removeEventListener('click', flipkaart);
                 tweedekaart.removeEventListener('click', flipkaart);
+
+                kaartengevonden++;
+
+                if (kaartengevonden === 8) {
+                    winnaarpopup();
+                }
             }
 
             function kaartenresetten() {
-                lockboard = true; 
+                vergrendelcontainer = true; 
                 setTimeout(() => {
                     eerstekaart.classList.remove('flip');
                     tweedekaart.classList.remove('flip');
 
-                    lockboard = false;
+                    vergrendelcontainer = false;
                 }, 500);
             }
 
-            function resetcontainer() {
-                kaartflipte = false;
-                lockboard = false;
-                eerstekaart = null;
-                tweedekaart = null;
-            }
-
-            (function shuffle() {
+            (function shuffle() { 
                 kaarten.forEach(kaart => {
-                    let randompositie = Math.floor(Math.random() * 30);
+                    let randompositie = Math.floor(Math.random() * 16);
                     kaart.style.order = randompositie; 
                 });
-            })();
+            })(); //Ik heb bij deze code een IIFE methode gebruikt om de code meteen uit te voeren hier is de bron https://www.w3schools.com/js/js_function_definition.asp 
 
             kaarten.forEach(kaart => kaart.addEventListener('click', flipkaart))
+
+            function Menu() {
+                window.location.href = "Menu.html"; 
+            }
+            
+            // voor het uitvogelen van de countdown timer heb ik gebruik gemaakt van een youtube video, hier is de url: https://www.youtube.com/watch?v=x7WJEmxNlEs
+            let tijd = 50;
+
+            const countdownEl = document.getElementById('countdown');
+
+            setInterval(nummerverandering, 1000);
+
+            function nummerverandering() {
+
+                countdownEl.innerHTML = `${tijd}`;
+
+                tijd--;
+
+                if (tijd === 0) {
+                    verliezerpopup();
+                }
+
+                while (tijd < 0) {
+                    tijd++;
+                }
+            }
+
+            function verliezerpopup(){
+                let popup = document.getElementById("Popup1");
+                popup.style.display = "block";
+                setTimeout(Menu,5000)
+            }
+
+            function winnaarpopup(){
+                let popup = document.getElementById("Popup2");
+                popup.style.display = "block";
+                setTimeout(Menu,5000)
+            }
 
         </script>
             

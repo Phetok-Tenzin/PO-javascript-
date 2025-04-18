@@ -33,6 +33,12 @@
 
     <h2 id="popup-title"></h2>
     <p>Inhoud van het menu</p>
+    <div id="helderheidknoppen" style="margin-top: 20px; display: none;">
+      <p><b>Helderheid aanpassen</b></p>
+      <button onclick="veranderhelderheid('dark')">Donker</button>
+      <button onclick="veranderhelderheid('normal')">Normaal</button>
+      <button onclick="veranderhelderheid('light')">Licht</button>
+    </div>
     <button onclick="closeMenu()">Sluiten</button>
   </div>
 </div>
@@ -44,20 +50,38 @@
   </audio>
 
   <script>
-    document.addEventListener("click", function () {
-      const audio = document.getElementById("bgMusic");
-      audio.play();
-    }, { once: true });
+  const helderheidlijst = {
+    dark: "brightness(0.5)",
+    normal: "brightness(1)",
+    light: "brightness(1.5)"
+  };
 
-    function openMenu(type) {
-  document.getElementById("popup-title").textContent = type;
-  document.getElementById("overlay").style.display = "flex";
-}
+  document.addEventListener("click", function () {
+    document.getElementById("bgMusic").play();
+  }, { once: true });
 
-function closeMenu() {
-  document.getElementById("overlay").style.display = "none";
-}
-  </script>
+  function openMenu(type) {
+    // Zet titel en overlay
+    document.getElementById("popup-title").textContent = type;
+    document.getElementById("overlay").style.display = "flex";
+
+    // Toon of verberg de helderheid­knoppen
+    const helderheidbuttons = document.getElementById("helderheidknoppen");
+    if (type === "Instellingen") {
+      helderheidbuttons.style.display = "block";
+    } else {
+      helderheidbuttons.style.display = "none";
+    }
+  }
+
+  function veranderhelderheid(soort) {
+    document.body.style.filter = helderheidlijst[soort];
+  }
+
+  function closeMenu() {
+    document.getElementById("overlay").style.display = "none";
+  }
+</script>
 <a href="Menu.html"><div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;">
   <a href="Menu.html">
     <img src="Conquestbutton.png" width="auto" height="100px" style="display: block;">
