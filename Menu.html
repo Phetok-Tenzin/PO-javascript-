@@ -4,12 +4,41 @@
   <title>General Gallery</title>
   <style>
     body {
-      background-image: url("Menuachtergrond.png"); width: auto;
+      background-image: url("Menuachtergrond.png");
       background-size: cover;
       margin: 0;
       padding: 0;
     }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh; /* zorgt dat het verticaal gecentreerd is over hele scherm */
+      gap: 20px; /* ruimte tussen de knoppen */
+    }
+
+    .button-container a img {
+      height: 100px;
+      width: auto;
+      display: block;
+    }
   </style>
-  
 </head>
 <body>
+
+  <div class="button-container">
+    <a href="Menu.html">
+      <img src="Conquestbutton.png" alt="Knop 1">
+    </a>
+    <a href="PO javascript.html">
+      <img src="Conquestbutton.png" alt="Knop 2">
+    </a>
+    <a href="Menu.html">
+      <img src="Conquestbutton.png" alt="Knop 3">
+    </a>
+  </div>
+
+</body>
+</html>
